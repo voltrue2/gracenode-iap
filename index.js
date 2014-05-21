@@ -1,5 +1,4 @@
-
-var gracenode = require('../../');
+var gracenode = require('gracenode');
 var log = gracenode.log.create('in-app-purchase');
 var crypto = require('crypto');
 var async = require('async');
