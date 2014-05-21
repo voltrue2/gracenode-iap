@@ -1,5 +1,5 @@
 var gracenode = require('../gracenode');
-var log = gracenode.log.create('in-app-purchase');
+var log = gracenode.log.create('iap');
 var crypto = require('crypto');
 var async = require('async');
 
@@ -18,12 +18,12 @@ var CANCELED  = module.exports.CANCELED  = 'canceled';
 
 module.exports.readConfig = function (configIn) {
 	if (!gracenode.mysql) {
-		throw new Error('iap module requires built-in request module and mysql');
+		throw new Error('iap module requires gracenode-mysql module');
 	}
 	if (!configIn || !configIn.sql) {
-        throw new Error('invalid configurations given:\n' + JSON.stringify(configIn, null, 4));
-    }
-	
+        	throw new Error('invalid configurations given:\n' + JSON.stringify(configIn, null, 4));
+    	}
+
 	config = configIn;
 
 	mysql = gracenode.mysql.create(config.sql);
