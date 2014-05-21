@@ -1,4 +1,4 @@
-var gracenode = require('gracenode');
+var gracenode = require('../gracenode');
 var log = gracenode.log.create('iap-google');
 var fs = require('fs');
 var crypto = require('crypto');

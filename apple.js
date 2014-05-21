@@ -4,7 +4,7 @@
 * requies mysql table created by iap/schema.sql
 */
 var request = require('request');
-var gracenode = require('gracenode');
+var gracenode = require('../gracenode');
 var log = gracenode.log.create('iap-apple');
 
 var errorMap = {
@@ -45,7 +45,7 @@ module.exports.validatePurchase = function (receipt, cb) {
 			'Content-Type': 'application/x-www-form-urlencoded'
 		}
 	};
-	send('https://' + host + path, content, function (error, data) {
+	send('https://' + host + path, content, function (error, res, data) {
 		if (error) {
 			return cb(error);
 		}
