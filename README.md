@@ -1,8 +1,41 @@
-# Iap Module (in-app-purchase)
+# gracenode-iap Module (in-app-purchase)
 
 In-App-Purchase module for gracenode framework.
 
 This is designed to function within gracenode framework.
+
+### Requirements
+
+In order for gracenode-iap module to work properly, you need to add gracenode-mysql module to your application.
+
+#### Before you start using gracenode-iap
+
+gracenode-iap module uses mysql database to store validation data, you will need to create the required table for the module.
+
+To create the required mysql table, you will need to execute the following SQL queries:
+
+`gracenode-iap/schema.sql`
+
+If you need to execute the queries from Node.js application, you may do:
+
+```
+var gracenode = require('gracenode');
+gracenode.setConfigPath('path/to/your/config/dir/');
+gracenode.setConfigFiles(['yourConfig.json']);
+gracenode.use('gracenode-mysql');
+gracenode.use('gracenode-iap');
+gracenode.setup(function (error) {
+	if (error) {
+		return console.error(error);
+	}
+	gracenode.getModuleSchema('iap', function (error, sqlList) {
+		if (error) {
+			// hmm error
+		}
+		// execute the SQL queries in sqlList array here
+	});
+});
+```
 
 ## How to include it in my project
 
@@ -11,6 +44,7 @@ To add this package as your gracenode module, add the following to your package.
 ```
 "dependencies": {
 	"gracenode": "",
+	"gracenode-mysql": "",
 	"gracenode-iap": ""
 }
 ```
@@ -20,6 +54,8 @@ To use this module in your application, add the following to your gracenode boot
 ```
 var gracenode = require('gracenode');
 // this tells gracenode to load the module
+// make sure you load gracenode-mysql module BEFORE gracenode-iap module
+gracenode.use('gracenode-mysql');
 gracenode.use('gracenode-iap');
 ```
 
