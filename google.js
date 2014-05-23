@@ -33,7 +33,7 @@ module.exports.setup = function (cb) {
 
 		var pkey = '-----BEGIN PUBLIC KEY-----\n' + key + '-----END PUBLIC KEY-----\n';
 		
-		log.info('validation public key: ' + pkey);
+		log.verbose('validation public key: ' + pkey);
 		
 		publicKey = pkey;
 
