@@ -14,7 +14,7 @@ name="gracenode-encrypt";
 cwd=`pwd`;
 # list directories/files to lint
 list=();
-defaultDirList="index.js";
+defaultDirList="index.js apple.js google.js";
 # optional space separated list of directories/files to lint
 # Example: ./lint.sh "mydir/ myFile" > this will lint all files in mydir/ and lint myFile
 dirList=$1;
