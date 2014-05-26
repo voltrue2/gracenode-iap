@@ -21,11 +21,9 @@ module.exports.readConfig = function (configIn) {
 		throw new Error('iap module requires gracenode-mysql module');
 	}
 	if (!configIn || !configIn.sql) {
-        	throw new Error('invalid configurations given:\n' + JSON.stringify(configIn, null, 4));
-    	}
-
+		throw new Error('invalid configurations given:\n' + JSON.stringify(configIn, null, 4));
+	}
 	config = configIn;
-
 	mysql = gracenode.mysql.create(config.sql);
 
 	apple.readConfig(config);
