@@ -28,7 +28,7 @@ gracenode.setup(function (error) {
 	if (error) {
 		return console.error(error);
 	}
-	gracenode.getModuleSchema('iap', function (error, sqlList) {
+	gracenode.getModuleSchema('gracenode-iap', function (error, sqlList) {
 		if (error) {
 			// hmm error
 		}
@@ -69,7 +69,7 @@ gracenode.iap
 ## Configurations
 ```javascript
 "modules": {
-        "iap": {
+        "gracenode-iap": {
                 "sandbox": true or false,
                 "sql": "mysql module configuration name",
                 "googlePublicKeyPath": "path to google play public key files" // the file names MUST be specific (for live: iap-live, for sandbox: iap-sandbox)

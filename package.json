@@ -1,7 +1,7 @@
 {
 	"name": "gracenode-iap",
 	"description": "In-App-Purchase module for gracenode framework.",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"author": "Nobuyori Takahashi <voltrue2@yahoo.com>",
 	"repository": {
 		"type": "git",
