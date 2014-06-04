@@ -28,13 +28,6 @@ var host = null;
 
 module.exports.readConfig = function (configIn) {
 	config = configIn;
-	if (config.sandbox) {
-		host = sandboxHost;
-	} else {
-		host = liveHost;
-	}
-	log.verbose('mode: [' + (config.sandbox ? 'sandbox' : 'live') + ']');
-	log.verbose('request URL: https://' + host + path);
 };
 
 module.exports.validatePurchase = function (receipt, cb) {
@@ -45,14 +38,22 @@ module.exports.validatePurchase = function (receipt, cb) {
 			'Content-Type': 'application/x-www-form-urlencoded'
 		}
 	};
-	send('https://' + host + path, content, function (error, res, data) {
+	send('https://' + liveHost + path, content, function (error, res, data) {
 		if (error) {
 			return cb(error);
 		}
-		log.info('validation response: ', data);
-
-		log.verbose('response data:', data);
-
+		if (data.status === 21007) {
+			// sandbox receipt sent to production. send the validation to sandbox now
+			log.info('sending sandbox validation');
+			return send('https://' + sandboxHost + path, content, function (error, res, data) {
+				if (error) {
+					return cb(error);
+				}
+				log.info('sandbox validation response:', data);
+				handleResponse(receipt, data, cb);
+			});
+		}
+		log.info('live validation response: ', data);
 		handleResponse(receipt, data, cb);
 	});
 };
@@ -67,6 +68,7 @@ function send(url, content, cb) {
 		body: content,
 		json: true
 	};
+	log.info('validation request sent:', url);
 	request.post(options, function (error, res, body) {
 		return cb(error, res, body);
 	});

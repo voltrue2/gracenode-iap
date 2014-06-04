@@ -77,6 +77,12 @@ gracenode.iap
 }
 ```
 
+### iOS in-app-purchase sandbox V.S. production
+
+gracenode-iap module automatically detects the target environments and sends the validation requests to the right end point.
+
+Internally it sends validation to Apple in-app-purchase production server, and when it receives status `21007`, it will then retry sandbox.
+
 ###API: validateApplePurchase
 
 <pre>
