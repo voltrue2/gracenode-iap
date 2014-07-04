@@ -70,18 +70,23 @@ gracenode.iap
 ```javascript
 "modules": {
         "gracenode-iap": {
-                "sandbox": true or false,
                 "sql": "mysql module configuration name",
                 "googlePublicKeyPath": "path to google play public key files" // the file names MUST be specific (for live: iap-live, for sandbox: iap-sandbox)
         }
 }
 ```
 
-### iOS in-app-purchase sandbox V.S. production
+## Production and Sandbox
+
+### Apple
 
 gracenode-iap module automatically detects the target environments and sends the validation requests to the right end point.
 
 Internally it sends validation to Apple in-app-purchase production server, and when it receives status `21007`, it will then retry sandbox.
+
+### Google
+
+gracenode-iap module automatically tries to validate each purchase with production key first and falls back to sandbox.
 
 ###API: validateApplePurchase
 
