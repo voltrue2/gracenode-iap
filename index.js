@@ -46,7 +46,7 @@ module.exports.testApple = function (receipt, cb) {
 		}
 		try {
 			var validateState = getValidateState(response);
-			cb(null, { validateState: validateState, status: PENDING, response: response });
+			cb(null, { receiptHash: createReceiptHash(receipt), validateState: validateState, status: PENDING, response: response });
 		} catch (e) {
 			return cb(e);
 		}
@@ -60,7 +60,7 @@ module.exports.testGoogle = function (receipt, cb) {
 		}
 		try {
 			var validateState = getValidateState(response);
-			cb(null, { validateState: validateState, status: PENDING, response: response });
+			cb(null, { receiptHash: createReceiptHash(receipt), validateState: validateState, status: PENDING, response: response });
 		} catch (e) {
 			return cb(e);
 		}
