@@ -181,7 +181,7 @@ function storeResponse(receipt, response, validated, cb) {
 			if (error) {
 				return cb(error);
 			}
-			cb(null, { validateState: validateState, status: PENDING, response: response });
+			cb(null, { receiptHash: hash, validateState: validateState, status: PENDING, response: response });
 		});
 	} catch (e) {
 		return cb(e);
