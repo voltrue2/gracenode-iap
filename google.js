@@ -61,7 +61,8 @@ module.exports.validatePurchase = function (receipt, cb) {
 	validatePublicKey(pkeys.live, receipt, function (error, receiptBack, data, validated) {
 		if (error) {
 			// try sandbox next
-			log.verbose('validate with sandbox public key', error);
+			log.error('live validation error:', error);
+			log.verbose('validate with sandbox public key');
 			return validatePublicKey(pkeys.sandbox, receipt, cb);
 		}
 		cb(null, receipt, data, validated);
