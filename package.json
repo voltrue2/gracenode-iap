@@ -1,13 +1,14 @@
 {
 	"name": "gracenode-iap",
 	"description": "In-App-Purchase module for gracenode framework.",
-	"version": "0.1.8",
+	"version": "0.1.9",
 	"author": "Nobuyori Takahashi <voltrue2@yahoo.com>",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/voltrue2/gracenode-iap.git"
 	},
 	"dependencies": {
+		"async": "0.9.0",
 		"request": "2.36.0"
 	},
 	"devDependencies": {
